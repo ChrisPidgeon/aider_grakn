@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 grakn-client = "*"
 pylint = "*"
+pytest = "*"
 
 [dev-packages]
 
