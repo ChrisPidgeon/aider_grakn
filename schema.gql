@@ -1,0 +1,56 @@
+define 
+
+#ATTRIBUTES 
+
+person sub attribute,
+    value string;
+
+name sub attribute,
+    value string;
+
+title sub attribute,
+    value string;
+
+phone sub attribute,
+    value string;
+
+gender sub attribute,
+    value string;
+
+email sub attribute,
+    value string;
+
+account-number sub attribute,
+    value string;
+
+account-balance sub attribute,
+    value long;
+
+product-name sub attribute,
+    value string; 
+
+ownership_id sub attribute,
+    value string;
+
+customer sub entity,
+    owns person @key,
+    owns name,
+    owns title, 
+    owns phone, 
+    owns gender, 
+    owns email,
+    plays ownership:account-owner;
+
+bank-details sub entity, 
+    owns account-number @key, 
+    owns account-balance, 
+    owns product-name,
+    plays ownership:account;
+
+ownership sub relation, 
+    owns ownership_id @key,
+    relates account-owner,
+    relates account;
+
+
+
