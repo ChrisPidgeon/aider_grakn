@@ -1,56 +1,57 @@
 define 
 
-#ATTRIBUTES 
+    #ATTRIBUTES 
 
-person sub attribute,
-    value string;
+    name sub attribute,
+        value string;
 
-name sub attribute,
-    value string;
+    title sub attribute,
+        value string;
 
-title sub attribute,
-    value string;
+    phone sub attribute,
+        value string;
 
-phone sub attribute,
-    value string;
+    gender sub attribute,
+        value string;
 
-gender sub attribute,
-    value string;
+    email sub attribute,
+        value string;
 
-email sub attribute,
-    value string;
+    account-number sub attribute,
+        value string;
 
-account-number sub attribute,
-    value string;
+    account-balance sub attribute,
+        value long;
 
-account-balance sub attribute,
-    value long;
+    product-name sub attribute,
+        value string; 
 
-product-name sub attribute,
-    value string; 
+    ID sub attribute,
+        value long;
 
-ownership_id sub attribute,
-    value string;
+    #ENTITIES 
 
-customer sub entity,
-    owns person @key,
-    owns name,
-    owns title, 
-    owns phone, 
-    owns gender, 
-    owns email,
-    plays ownership:account-owner;
+    customer sub entity,
+        owns ID @key,
+        owns name,
+        owns title, 
+        owns phone, 
+        owns gender, 
+        owns email,
+        plays ownership:account-owner;
 
-bank-details sub entity, 
-    owns account-number @key, 
-    owns account-balance, 
-    owns product-name,
-    plays ownership:account;
+    bank-details sub entity, 
+        owns ID @key, 
+        owns account-balance, 
+        owns product-name,
+        plays ownership:account;
 
-ownership sub relation, 
-    owns ownership_id @key,
-    relates account-owner,
-    relates account;
+    #RELATIONS 
+    
+    ownership sub relation, 
+        owns ID @key,
+        relates account-owner,
+        relates account;
 
 
 
