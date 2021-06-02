@@ -1,94 +1,91 @@
 define 
 
 person sub entity, 
-	has email, 
-	has name,
-	has phone,
-	has age,
-	has gender,
-	has title,
-	plays submitted,
-	plays active-person,
-	plays transacting,
-	plays applying, 
-	plays husband, 
-	plays wife,
-	plays employed, 
-	plays product-holder, 
-	plays visiting,
-	plays receiving, 
-	plays reacted-by, 
-	plays replied-by,
-	plays recommended-to,
-	plays negative-recommended-to,
-	plays withdrawing; 
+	owns email, 
+	owns name,
+	owns phone,
+	owns age,
+	owns gender,
+	owns title,
+	plays support-ticket-submission:submitted,
+	plays device-session:active-person,
+	plays debit-transaction:transacting,
+	plays application:applying, 
+	plays marriage:husband, 
+	plays marriage:wife,
+	plays employment:employed, 
+	plays product-ownership:product-holder, 
+	plays visit:visiting,
+	plays promotion:receiving, 
+	plays liking:reacted-by, 
+	plays reply:replied-by,
+	plays recommendation:recommended-to,
+	plays negative-recommendation:negative-recommended-to,
+	plays withdraw:withdrawing; 
 company sub entity,
-	has name,
-	plays employer;
+	owns name,
+	plays employment:employer;
 bank-branch sub entity,
-	plays located,
-	plays visited-branch,
-	plays located;
+	plays branch-visit:visited-branch,
+	plays location:located;
 atm sub entity, 
-	plays withdrawing-atm;
-social-post sub entity; 
+	plays withdraw:withdrawing-atm;
 product sub entity, 
-	has product-name, 
-	plays recommended-product,
-	plays negative-recommended-product,
-	plays ticketed-product,
-	plays owned-product,
-	plays account-transaction,
-	plays account-transaction,
-	plays searched-product,
-	plays promoted;
+	owns product-name, 
+	plays recommendation:recommended-product,
+	plays negative-recommendation:negative-recommended-product,
+	plays support-ticket-submission:ticketed-product,
+	plays product-ownership:owned-product,
+	plays debit-transaction:account-transaction,
+	plays search:searched-product,
+	plays promotion:promoted;
 current-account sub product,
-	has account-balance; 
+	owns account-balance; 
 mortgage sub product; 
 credit-card sub product;
 web-page sub entity,
-	has website-title, 
-	plays promoting-page,
-	plays visited-website; 
+	owns website-title, 
+	plays promotion:promoting-page,
+	plays website-visit:visited-website; 
 post sub entity, 
-	has post-title, 
-	has text, 
-	plays replied-to, 
-	plays reacted-to,
-	plays promoting-post; 
+	owns post-title, 
+	owns text, 
+	plays reply:replied-to, 
+	plays liking:reacted-to,
+	plays promotion:promoting-post; 
 comment sub post, 
-	plays reply-content;
+	plays reply:reply-content;
 mortgage-application sub entity, 
-	has application-status, 
-	has application-filed, 
-	plays applied;
+	owns application-status, 
+	owns application-filed, 
+	plays application:applied;
 data-source sub entity, 
-	has name,
-	plays owned,
-	plays sourcing; 
+	owns name,
+	plays ownership:owned,
+	plays source:sourcing; 
 bank sub company;
 subsidiary sub bank,
-	plays owner;
+	plays ownership:owner;
 city sub entity, 
-	has name,
-	plays locating; 
+	owns name,
+	plays location:locating; 
 transaction sub entity, 
-	has amount,
-	plays transacted, 
-	plays located; 
+	owns amount,
+	plays debit-transaction:transacted, 
+	plays location:located; 
 support-ticket sub entity, 
-	has ticket-title,
-	plays ticketing; 
+	owns ticket-title,
+	plays support-ticket-submission:ticketing; 
 device sub entity,
-	has device-type, 
-	plays active-device;
+	owns device-type, 
+	plays device-session:active-device;
 session sub entity,
-	has session-duration, 
-	has timestamp,
-	has session-id,
-	plays visiting,
-	plays active-session,
-	plays active-search-session;
+	owns session-duration, 
+	owns timestamp,
+	owns session-id,
+	plays website-visit:visiting,
+	plays device-session:active-session,
+	plays search:active-search-session;
 employment sub relation, 
 	relates employed,
 	relates employer;
@@ -97,11 +94,11 @@ visit sub relation,
 branch-visit sub relation,
 	relates visited-branch,
 	relates visiting,
-	has visit-date;
+	owns visit-date;
 website-visit sub relation,
 	relates visited-website,
 	relates visiting,
-	has visit-date;
+	owns visit-date;
 source sub relation, 
 	relates sourced, 
 	relates sourcing; 
@@ -119,25 +116,12 @@ promotion sub relation,
 	relates promoted,
 	relates promoting-post,
 	relates promoting-page, 
-	has link-clicks,
-	has promotion-name,
-	has opens;
-website-promotion sub promotion, 
-	relates promoting-page,
-	relates receiving,
-	relates promoted,
-	relates promoting-post;	
-email-promotion sub promotion,
-	relates receiving,
-	relates promoted,
-	relates promoting-post,
-	relates promoting-page, 
-	has link-clicks;
-social-promotion sub promotion,
-	relates promoting-post, 
-	relates promoted,
-	relates receiving,
-	relates promoting-page;
+	owns link-clicks,
+	owns promotion-name,
+	owns opens;
+website-promotion sub promotion;
+email-promotion sub promotion;
+social-promotion sub promotion;
 reply sub relation,
 	relates replied-to,
 	relates reply-content,
@@ -145,12 +129,12 @@ reply sub relation,
 withdraw sub relation,
 	relates withdrawing-atm,
 	relates withdrawing,
-	has withdraw-amount;
+	owns withdraw-amount;
 liking sub relation, 
 	relates reacted-to,
 	relates reacted-by;
 marriage sub relation, 
-	plays sourced,
+	plays source:sourced,
 	relates husband,
 	relates wife;
 recommendation sub relation, 

@@ -1,0 +1,69 @@
+insert
+
+$p2 isa person, has name "Bob", has email "bob@gmail.com", has gender "male", has age "31", has phone "024929404", has title "Mr"; 
+$c2 isa current-account, has account-balance 2039, has product-name "Current Account Advantage"; 
+(product-holder: $p2, owned-product: $c2) isa product-ownership;
+
+$p isa person, has name "Susan", has email "susan@gmail.com", has gender "female", has age "29", has phone "023224593", has title "Mrs"; 
+$marr (husband: $p2, wife: $p) isa marriage; 
+
+(sourced: $marr, sourcing: $data) isa source; 
+$data isa data-source, has name "Marriages-DB 2012";    
+(owned: $data, owner: $subsidiary) isa ownership; 
+$subsidiary isa subsidiary, has name "NextGen Subsidiary"; 
+
+$c isa current-account, has account-balance 9293, has product-name "Current Account Plus"; 
+(product-holder: $p, owned-product: $c) isa product-ownership;
+
+$atm isa atm;
+(withdrawing-atm: $atm, withdrawing: $p) isa withdraw, has withdraw-amount 100;
+
+$cc isa credit-card, has product-name "10k Credit Cards"; 
+(promoted: $cc, receiving: $p) isa email-promotion, has opens 0, has link-clicks 0, has promotion-name "Join our best credit cards!";
+(promoted: $cc, receiving: $p) isa email-promotion, has opens 0, has link-clicks 0, has promotion-name "Promotional offer on credit cards available today!";
+
+$w isa web-page, has website-title "Mortgage Product Overview"; 
+(visiting: $sess, visited-website: $w) isa website-visit;
+(promoting-page: $w, promoted: $m) isa website-promotion;
+
+$m isa mortgage, has product-name "Affordable Housing Mortgage"; 
+(promoted: $m, receiving: $p) isa email-promotion, has opens 3, has link-clicks 6, has promotion-name "Amazing Mortgages!";
+
+$post isa post, has post-title "Is this your dream home?";
+(promoting-post: $post, promoted: $m) isa social-promotion;
+$com isa comment, has text "I love this house!!! I want to buy a house soon!";
+(replied-to: $post, replied-by: $p, reply-content: $com) isa reply;
+(reacted-to: $post, reacted-by: $p) isa liking; 
+
+$city isa city, has name "Liverpool"; 
+$city2 isa city, has name "Manchester"; 
+
+$br isa bank-branch; 
+(located: $br, locating: $city) isa location; 
+$br2 isa bank-branch;
+(located: $br2, locating: $city2) isa location; 
+(visited-branch: $br, visiting: $p2) isa branch-visit, has visit-date "7 Oct 2018"; 
+(visited-branch: $br2, visiting: $p2) isa branch-visit, has visit-date "19 Sept 2019"; 
+(visited-branch: $br, visiting: $p) isa branch-visit, has visit-date "7 Oct 2018"; 
+(visited-branch: $br2, visiting: $p) isa branch-visit, has visit-date "19 Sept 2019"; 
+
+$appli isa mortgage-application, has application-status "Refused", has application-filed "1 Nov 2014"; 
+(applying: $p2, applied: $appli) isa application; 
+
+$sess isa session, has session-duration "2401", has timestamp "1389202121", has session-id "340BF0ED-77B0-45D0-A81EBE2F69DB51C1"; 
+$dev isa device, has device-type "Samsung S10"; 
+(active-session: $sess, active-device: $dev, active-person: $p) isa device-session; 
+(active-search-session: $sess, searched-product: $m) isa search; 
+
+$spt isa support-ticket, has ticket-title "My transaction got declined"; 
+(ticketing: $spt, ticketed-product: $c, submitted: $p) isa support-ticket-submission; 
+
+$tran isa transaction, has amount "94"; 
+$tran1 isa transaction, has amount "13"; 
+$tran2 isa transaction, has amount "932"; 
+(account-transaction: $c, transacting: $p, transacted: $tran) isa debit-transaction; 
+(account-transaction: $c, transacting: $p, transacted: $tran1) isa debit-transaction; 
+(account-transaction: $c, transacting: $p, transacted: $tran2) isa debit-transaction; 
+(located: $tran, locating: $city) isa location; 
+(located: $tran1, locating: $city) isa location; 
+(located: $tran2, locating: $city) isa location; 
