@@ -191,11 +191,11 @@ negative-product-recommendation sub rule,
 when {
 	$p isa person;
 	$pr isa product;
-	$1 (receiving: $p, promoted: $pr) isa promotion, has opens $o;
-	$2 (receiving: $p, promoted: $pr) isa promotion, has opens $o2;
-	$1 != $2; 
-	$o == 0; 
-	$o2 == 0;
+	$promotion1 (receiving: $p, promoted: $pr) isa promotion, has opens $po1;
+	$promotion2 (receiving: $p, promoted: $pr) isa promotion, has opens $po2;
+	$promotion1 != $promotion2; 
+	$po1 == 0; 
+	$po2 == 0;
 }, then {
 	(negative-recommended-product: $pr, negative-recommended-to: $p) isa negative-recommendation;
 };
@@ -206,9 +206,9 @@ when {
 	$pr isa product;
 	$w isa web-page;
 	$sess isa session; 
-	$0 (active-session: $sess, active-device: $dev, active-person: $p) isa device-session; 
-	$1 (visiting: $sess, visited-website: $w) isa website-visit;
-	$2 (promoting-page: $w, promoted: $pr) isa website-promotion;
+	$dev_sess (active-session: $sess, active-device: $dev, active-person: $p) isa device-session; 
+	$web_visit (visiting: $sess, visited-website: $w) isa website-visit;
+	$web_promo (promoting-page: $w, promoted: $pr) isa website-promotion;
 	$post isa post;
 	$sp (promoting-post: $post, promoted: $pr) isa social-promotion;
 	$com isa comment;
@@ -222,9 +222,9 @@ mortgage-marriage-recommendation sub rule,
 when {
 	$p isa person;
 	$p2 isa person;
-	$2 ($p2, $p) isa marriage; 
+	$marriage ($p2, $p) isa marriage; 
 	$pr isa mortgage;
-	$1 (recommended-product: $pr, recommended-to: $p2) isa recommendation;
+	$recommendation (recommended-product: $pr, recommended-to: $p2) isa recommendation;
 }, then {
 	(recommended-product: $pr, recommended-to: $p) isa recommendation;
 };
