@@ -4,9 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-grakn-client = "*"
 pylint = "*"
 pytest = "*"
+typedb-client = "*"
+ijson = "*"
 
 [dev-packages]
 
