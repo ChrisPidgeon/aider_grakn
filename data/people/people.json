@@ -1,0 +1,18 @@
+[
+    {
+        "name":"Susan",
+        "email":"susan@gmail.com",
+        "gender":"female",
+        "age":"29",
+        "phone":"023224593",
+        "title":"Mrs"
+    },
+    {
+        "name":"Bob",
+        "email":"bob@gmail.com",
+        "gender":"male",
+        "age":"31",
+        "phone":"024929404",
+        "title":"Mr"
+    }
+]
