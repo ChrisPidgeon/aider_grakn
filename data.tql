@@ -1,19 +1,18 @@
 insert
 
+$p isa person, has name "Susan", has email "susan@gmail.com", has gender "female", has age "29", has phone "023224593", has title "Mrs"; 
+$c isa current-account, has account-balance 9293, has product-name "Current Account Plus"; 
+(product-holder: $p, owned-product: $c) isa product-ownership;
+
 $p2 isa person, has name "Bob", has email "bob@gmail.com", has gender "male", has age "31", has phone "024929404", has title "Mr"; 
 $c2 isa current-account, has account-balance 2039, has product-name "Current Account Advantage"; 
 (product-holder: $p2, owned-product: $c2) isa product-ownership;
 
-$p isa person, has name "Susan", has email "susan@gmail.com", has gender "female", has age "29", has phone "023224593", has title "Mrs"; 
 $marr (husband: $p2, wife: $p) isa marriage; 
-
 (sourced: $marr, sourcing: $data) isa source; 
 $data isa data-source, has name "Marriages-DB 2012";    
 (owned: $data, owner: $subsidiary) isa ownership; 
 $subsidiary isa subsidiary, has name "NextGen Subsidiary"; 
-
-$c isa current-account, has account-balance 9293, has product-name "Current Account Plus"; 
-(product-holder: $p, owned-product: $c) isa product-ownership;
 
 $atm isa atm;
 (withdrawing-atm: $atm, withdrawing: $p) isa withdraw, has withdraw-amount 100;
